@@ -382,12 +382,30 @@
 		                }
 		            },
 		            "spec": {
-		                "volumes": [
+		               "volumes": [
 		                    {
 		                        "name": "${APPLICATION_NAME}-slave-data",
 		                        "emptyDir": {}
+		                    },
+		                    {
+		                        "name": "${APPLICATION_NAME}-docker-socket",
+		                        "hostPath": {
+		                            "path": "/var/run/docker.sock"
+		                        }
+		                    },
+		                    {
+		                        "name": "${APPLICATION_NAME}-bin",
+		                        "hostPath": {
+		                            "path": "/usr/bin/docker"
+		                        }
+		                    },
+		                    {
+		                        "name": "${APPLICATION_NAME}-cert",
+		                        "hostPath": {
+		                            "path": "/etc/origin/node/"
+		                        }
 		                    }
-		                ],
+                          ],
 		                "containers": [
 		                    {
 		                        "name": "${APPLICATION_NAME}-slave",
@@ -407,19 +425,37 @@
                                     }
                                 ],
 		                        "resources": {},
-		                        "volumeMounts": [
+		                         "volumeMounts": [
 		                            {
 		                                "name": "${APPLICATION_NAME}-slave-data",
 		                                "mountPath": "/var/lib/jenkins"
+		                            },
+		                            {
+		                                "name": "${APPLICATION_NAME}-docker-socket",
+		                                "mountPath": "/var/run/docker.sock"
+		                            },
+		                            {
+		                                "name": "${APPLICATION_NAME}-bin",
+		                                "mountPath": "/usr/bin/docker"
+		                            },
+		                            {
+		                                "name": "${APPLICATION_NAME}-cert",
+		                                "mountPath": "/cert/"
 		                            }
 		                        ],
 		                        "terminationMessagePath": "/dev/termination-log",
-		                        "imagePullPolicy": "Always"
+		                        "imagePullPolicy": "Always",
+                                 "securityContext": {
+                                    "capabilities": {},
+                                    "privileged": true
+                                }
 		                    }
 		                ],
 		                "restartPolicy": "Always",
 		                "terminationGracePeriodSeconds": 30,
 		                "dnsPolicy": "ClusterFirst",
+                        "serviceAccountName": "jenkins",
+                		"serviceAccount": "jenkins",
 		                "securityContext": {}
 		            }
 		        }
@@ -457,7 +493,7 @@
         {
             "name": "GIT_URI",
             "description": "Git Repository",
-            "value": "https://github.com/sabre1041/ose-jenkins-cluster.git"
+             "value": "https://github.com/Mangirdaz/ose-jenkins-cluster.git"
         },
         {
             "name": "GIT_REF",

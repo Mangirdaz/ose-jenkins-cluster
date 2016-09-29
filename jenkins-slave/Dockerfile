@@ -6,7 +6,7 @@ ENV HOME /opt/jenkins-slave
 ENV MAVEN_VERSION 3.3.3
 ENV JAVA_HOME /usr/lib/jvm/java
 
-RUN yum install -y git tar zip unzip which java-1.8.0-openjdk-devel && \
+RUN yum install -y git tar zip unzip which java-1.8.0-openjdk-devel docker && \
     yum clean all && \
     useradd -u 1001 -r -m -d ${HOME} -s /sbin/nologin -c "Jenkins Slave" jenkins-slave && \
     mkdir -p /opt/jenkins-slave/bin /var/lib/jenkins && \
@@ -27,6 +27,6 @@ WORKDIR /var/lib/jenkins
 
 VOLUME /var/lib/jenkins
 
-USER 1001
+USER 0
 
 ENTRYPOINT ["/opt/jenkins-slave/bin/jenkins-slave.sh"]

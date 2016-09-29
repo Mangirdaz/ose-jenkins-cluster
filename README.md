@@ -30,6 +30,12 @@ oc new-project jenkins
 oc create -f support/jenkins-cluster-persistent-template.json,support/jenkins-cluster-ephemeral-template.json
 ``` 
 
+4. If you will try to build docker you may need access to docker so means priviledged account.
+.
+```
+oadm policy add-scc-to-user privileged -z jenkins
+``` 
+
 
 ## Provisioning the Jenkins Master and Slaves
 
