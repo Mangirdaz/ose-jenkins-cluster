@@ -160,7 +160,7 @@
                 }
             },
             "spec": {
-                "source": {
+                "source": {     
                     "type": "Git",
                      "git": {
                          "uri": "${GIT_URI}",
