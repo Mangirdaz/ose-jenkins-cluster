@@ -5,8 +5,9 @@ ENV JNLP_SLAVE_VERSION 2.52
 ENV HOME /opt/jenkins-slave
 ENV MAVEN_VERSION 3.3.3
 ENV JAVA_HOME /usr/lib/jvm/java
+RUN yum install epel-release -y
 
-RUN yum install -y git tar zip unzip which java-1.8.0-openjdk-devel docker epel-release && \
+RUN yum install -y git tar zip unzip which java-1.8.0-openjdk-devel docker && \
     yum clean all && \
     useradd -u 1001 -r -m -d ${HOME} -s /sbin/nologin -c "Jenkins Slave" jenkins-slave && \
     mkdir -p /opt/jenkins-slave/bin /var/lib/jenkins && \
