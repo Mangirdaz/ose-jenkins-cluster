@@ -8,7 +8,7 @@ ENV JAVA_HOME /usr/lib/jvm/java
 RUN yum install epel-release -y
 COPY docker.repo /etc/yum.repos.d/
 
-RUN yum install -y git tar zip unzip which java-1.8.0-openjdk-devel docker && \
+RUN yum install -y git tar zip unzip which java-1.8.0-openjdk-devel docker-engine && \
     yum clean all && \
     useradd -u 1001 -r -m -d ${HOME} -s /sbin/nologin -c "Jenkins Slave" jenkins-slave && \
     mkdir -p /opt/jenkins-slave/bin /var/lib/jenkins && \
