@@ -6,6 +6,7 @@ ENV HOME /opt/jenkins-slave
 ENV MAVEN_VERSION 3.3.3
 ENV JAVA_HOME /usr/lib/jvm/java
 RUN yum install epel-release -y
+COPY docker.repo /etc/yum.repos.d/
 
 RUN yum install -y git tar zip unzip which java-1.8.0-openjdk-devel docker && \
     yum clean all && \
