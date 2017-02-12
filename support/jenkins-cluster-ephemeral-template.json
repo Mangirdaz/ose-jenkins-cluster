@@ -129,6 +129,7 @@
                     "dockerStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
+                            "namespace": "openshift",
                             "name": "${JENKINS_IMAGE_TAG}"
                         }
                     }
@@ -470,7 +471,7 @@
         {
             "name": "JENKINS_IMAGE_TAG",
             "description": "Base OpenShift Jenkins Image Tag",
-            "value": "ose-jenkins:v3.3"
+            "value": "jenkins:latest"
         },
         {
             "name": "GIT_URI",
