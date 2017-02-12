@@ -33,7 +33,7 @@ oc create -f support/jenkins-cluster-persistent-template.json,support/jenkins-cl
 4. If you will try to build docker you may need access to docker so means priviledged account.
 .
 ```
-oadm policy add-scc-to-user privileged -z jenkins
+oc adm policy add-scc-to-user privileged -z jenkins
 ``` 
 
 

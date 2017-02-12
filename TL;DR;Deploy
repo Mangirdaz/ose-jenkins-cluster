@@ -1,0 +1,16 @@
+git clone https://github.com/mangirdaz/ose-jenkins-cluster.git
+cd ose-jenkins-cluster
+
+minishift start
+oc login -u system:admin
+oc adm policy add-cluster-role-to-user cluster-admin admin
+oc new-project jenkins
+oc adm policy add-scc-to-user privileged -z jenkins -n default
+oc adm policy add-scc-to-user privileged -z jenkins -n jenkins
+oc create -f support
+oc process template/jenkins-cluster-ephemeral | oc create -f - -n jenkins
+
+login with admin/admin
+
+disable master as a node
+http://jenkins-jenkins.192.168.42.16.xip.io/computer/
