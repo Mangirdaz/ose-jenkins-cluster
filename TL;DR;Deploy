@@ -8,9 +8,14 @@ oc new-project jenkins
 oc adm policy add-scc-to-user privileged -z jenkins -n default
 oc adm policy add-scc-to-user privileged -z jenkins -n jenkins
 oc create -f support
-oc process template/jenkins-cluster-ephemeral | oc create -f - -n jenkins
+oc process template/jenkins-cluster-ephemeral-non-priv | oc create -f - -n jenkins
 
-login with admin/admin
+#login with admin/admin to ocp
 
-disable master as a node
-http://jenkins-jenkins.192.168.42.16.xip.io/computer/
+#2 build should start for jenkins master based on jenkins2 and slave based on centos7 
+
+when done
+#admin/password for jenkins
+
+#disable master as a node
+#http://jenkins-jenkins.192.168.42.16.xip.io/computer/
